@@ -2,6 +2,7 @@
 	"all": {
 		"include": {
 			"bluefin": [
+				"bash-color-prompt",
 				"cockpit-bridge",
 				"ddccontrol-db",
 				"ddccontrol-gtk",
@@ -24,12 +25,14 @@
 				"samba-winbind-modules",
 				"samba",
 				"solaar",
+				"stress-ng",
 				"tailscale",
 				"tmux",
 				"wireguard-tools",
 				"xprop",
 				"yaru-theme",
-				"zsh"
+				"zsh",
+				"google-noto-sans-cjk-fonts"
 			],
 			"bluefin-dx": [
 				"adobe-source-code-pro-fonts",
@@ -78,9 +81,8 @@
 				"virt-manager"
 			],
 			"bluefin-framework": [
-				"stress-ng",
-				"tlp-rdw",
-				"tlp"
+				"tlp",
+				"tlp-rdw"
 			]
 		},
 		"exclude": {
@@ -88,7 +90,8 @@
 				"firefox-langpacks",
 				"firefox",
 				"gnome-software-rpm-ostree",
-				"gnome-tour"
+				"gnome-tour",
+				"google-noto-sans-cjk-vf-fonts"
 			],
 			"bluefin-dx": [],
 			"bluefin-framework": [
