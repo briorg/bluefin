@@ -133,6 +133,24 @@ RUN systemctl enable podman.socket && \
     systemctl disable pmie.service && \
     systemctl disable pmlogger.service
 
+### BEGIN bri
+
+# Add custom scripts
+ADD --chmod=0755 scripts/* /tmp/
+
+### add bat
+RUN /tmp/bat.sh
+
+### add delta
+RUN /tmp/delta.sh
+
+### add 1password stubs
+RUN /tmp/1password.sh
+
+### END bri
+
+
+
 RUN /tmp/workarounds.sh
 
 # Clean up repos, everything is on the image so we don't need them
