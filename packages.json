@@ -60,6 +60,7 @@
 				"edk2-ovmf",
 				"edk2-ovmf",
 				"genisoimage",
+				"git", "git-crypt", "git-lfs",
 				"google-droid-sans-mono-fonts",
 				"google-go-mono-fonts",
 				"ibm-plex-mono-fonts",
