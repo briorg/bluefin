@@ -36,7 +36,7 @@
 				"wireguard-tools",
 				"xprop",
 				"yaru-theme",
-				"wl-clipboard", 
+				"wl-clipboard",
 				"zsh"
 			],
 			"bluefin-dx": [
@@ -93,8 +93,6 @@
 		},
 		"exclude": {
 			"bluefin": [
-				"firefox-langpacks",
-				"firefox",
 				"gnome-extensions-app",
 				"gnome-software-rpm-ostree",
 				"gnome-tour",
@@ -119,7 +117,7 @@
 	"39": {
 		"include": {
 			"bluefin": [
-				"input-leap"	
+				"input-leap"
 			],
 			"bluefin-dx": [],
 			"bluefin-framework": []
