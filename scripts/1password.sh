@@ -18,9 +18,10 @@ ln -s /opt/1Password/1password /usr/bin/1password
 
 # hacked from 1password-latest.tar.gz//after-install.sh
 
+cd /usr/lib/1Password
 # chrome-sandbox requires the setuid bit to be specifically set.
 # See https://github.com/electron/electron/issues/17972
-chmod 4755 ./chrome-sandbox
+chmod 4755 /usr/lib/1Password/chrome-sandbox
 
 GROUP_NAME="onepassword"
 GID_OP="1500"
@@ -32,16 +33,16 @@ GID_OPCLI="1600"
 #   groupadd -K GID_MIN=1500 "${GROUP_NAME}"
 # fi
 
-HELPER_PATH="./1Password-KeyringHelper"
-BROWSER_SUPPORT_PATH="./1Password-BrowserSupport"
+HELPER_PATH="/usr/lib/1Password/1Password-KeyringHelper"
+BROWSER_SUPPORT_PATH="/usr/lib/1Password/1Password-BrowserSupport"
 
-chgrp "${GID_OP}" $HELPER_PATH
+chgrp -R "${GID_OP}" /usr/lib/1Password
 # The binary requires setuid so it may interact with the Kernel keyring facilities
 chmod u+s $HELPER_PATH
 chmod g+s $HELPER_PATH
 
 # This gives no extra permissions to the binary. It only hardens it against environmental tampering.
-chgrp "${GROUP_NAME}" $BROWSER_SUPPORT_PATH
+chgrp "${GID_OP}" $BROWSER_SUPPORT_PATH
 chmod g+s $BROWSER_SUPPORT_PATH
 
 # Restore previous directory
@@ -49,8 +50,6 @@ cd "$CWD"
 
 # Register path symlink
 ln -s /usr/lib/1Password /opt/1Password
-EOF
-chmod +x /usr/bin/install-1password
 
 # Then we install the 1password CLI binary as well
 
