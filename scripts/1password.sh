@@ -11,6 +11,8 @@ mkdir /var/opt # temporary storage, will not end up in ostree
 rpm-ostree install https://downloads.1password.com/linux/rpm/stable/x86_64/1password-latest.rpm
 
 mv /var/opt/1Password /usr/lib/1Password
+
+#create symlink /usr/bin/1password pointing to /opt/1Password/1password
 ln -s /opt/1Password/1password /usr/bin/1password
 
 # hacked from 1password-latest.tar.gz//after-install.sh
