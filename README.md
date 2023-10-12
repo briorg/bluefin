@@ -1,10 +1,14 @@
-# bluefin
+# bri's bluefin spin
 
-**This image is considered Beta** 
+**a personal fork of Universal Blue's Bluefin{,-DX} spin on Fedora Sivlerblue** 
 
-[![Bluefin Build](https://github.com/ublue-os/bluefin/actions/workflows/build.yml/badge.svg)](https://github.com/ublue-os/bluefin/actions/workflows/build.yml)
+Probably the most important and notable changes from stock _Bluefin DX_ are Firefox and Chromium installed on the system (as in, not via Flatpaks), and [1Password installed systemwide](scripts/1password.sh). I actually really like Flatpaks, but unfortunately 1Password's browser integration just doesn't really work with them...
 
-[![Ubuntu Toolbox Build](https://github.com/ublue-os/bluefin/actions/workflows/build-ubuntu-toolbox.yml/badge.svg)](https://github.com/ublue-os/bluefin/actions/workflows/build-ubuntu-toolbox.yml)
+Please don't directly use this, because I will absolutely push breaking changes without any notice!
+
+[![Bluefin Build](https://github.com/briorg/bluefin/actions/workflows/build.yml/badge.svg)](https://github.com/ublue-os/bluefin/actions/workflows/build.yml)
+
+[![Ubuntu Toolbox Build](https://github.com/briorg/bluefin/actions/workflows/build-ubuntu-toolbox.yml/badge.svg)](https://github.com/ublue-os/bluefin/actions/workflows/build-ubuntu-toolbox.yml)
 
 A familiar(ish) Ubuntu desktop for Fedora Silverblue. It strives to cover these three use cases:
 - For end users it provides a system as reliable as a Chromebook with near-zero maintainance, with the power of Ubuntu and Fedora fused together
