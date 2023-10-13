@@ -107,8 +107,7 @@ distrobox-universal:
 
 # Switch to the fish shell
 fish:
-  sudo usermod $USER --shell /usr/bin/fish 
-  printf "${USER}'s shell is now %s." "$(cat /etc/passwd | grep ":$UID:" | cut '-d:' '-f7')"
+  sudo lchsh $USER /usr/bin/fish 
 
 # Install recommended GNOME extensions
 gnome-extensions:
@@ -156,8 +155,7 @@ nix-devbox-global:
 podmansh:
   sudo mkdir -p /etc/containers/systemd/users/${UID}
   sudo cp /usr/share/ublue-os/quadlets/podmansh.container /etc/containers/systemd/users/${UID}/podmansh.container
-  sudo usermod $USER --shell /usr/bin/podmansh
-  printf "${USER}'s shell is now %s." "$(cat /etc/passwd | grep ":$UID:" | cut '-d:' '-f7')"
+  sudo lchsh $USER /usr/bin/podmansh
   podman pull ghcr.io/ublue-os/ubuntu-toolbox:latest
   
   systemctl --user daemon-reload
@@ -217,8 +215,7 @@ yafti:
 
 # Switch to the zsh shell
 zsh:
-  sudo usermod $USER --shell /usr/bin/zsh 
-  printf "${USER}'s shell is now %s." "$(cat /etc/passwd | grep ":$UID:" | cut '-d:' '-f7')"
+  sudo lchsh $USER /usr/bin/zsh 
 
 docker:
   sudo systemctl enable --now docker
