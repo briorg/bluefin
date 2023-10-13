@@ -168,8 +168,11 @@ RUN /tmp/bat.sh
 ### add delta
 RUN /tmp/delta.sh
 
-### add 1password stubs
+### add 1password
 RUN /tmp/1password.sh
+
+### add Google Chrome
+RUN rpm-ostree install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 
 ### END bri
 

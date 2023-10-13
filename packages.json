@@ -3,6 +3,7 @@
 		"include": {
 			"bluefin": [
 				"chromium", "fedora-chromium-config", "fedora-chromium-config-gnome", "fedora-chromium-config-gssapi",
+				"icecat",
 				"bash-color-prompt",
 				"cockpit-bridge",
 				"ddccontrol-db",
