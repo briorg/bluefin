@@ -1,5 +1,13 @@
 {
   "policies": {
-    "DisablePocket": true
+    "DisablePocket": true,
+    "FirefoxHome": {
+      "SponsoredTopSites": false,
+      "Highlights": false,
+      "Pocket": false,
+      "SponsoredPocket": false,
+      "Snippets": false,
+      "Locked": false
+    }
   }
 }
