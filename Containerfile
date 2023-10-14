@@ -176,6 +176,9 @@ RUN /tmp/google-chrome.sh
 ### add appimagelauncher
 RUN rpm-ostree install "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher-2.2.0-gha111.d9d4c73.x86_64.rpm"
 
+### more
+RUN /tmp/more.sh
+
 ### END bri
 
 
