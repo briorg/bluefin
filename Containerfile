@@ -172,7 +172,7 @@ RUN /tmp/delta.sh
 RUN /tmp/1password.sh
 
 ### add Google Chrome
-RUN rpm-ostree install https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+RUN /tmp/google-chrome.sh
 
 ### END bri
 
