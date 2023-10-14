@@ -2,7 +2,6 @@
 	"all": {
 		"include": {
 			"bluefin": [
-				"https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher-2.2.0-gha111.d9d4c73.x86_64.rpm",
 				"chromium", "fedora-chromium-config", "fedora-chromium-config-gnome", "fedora-chromium-config-gssapi",
 				"bash-color-prompt",
 				"cockpit-bridge",
