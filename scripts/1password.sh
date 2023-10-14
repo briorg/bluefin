@@ -12,7 +12,7 @@ echo "Installing 1Password"
 # symbolic link /opt/1Password => /usr/lib/1Password upon
 # boot.
 
-ONEPASSWORD_RPM='https://downloads.1password.com/linux/rpm/stable/x86_64/1password-latest.rpm'
+ONEPASSWORD_RPM='https://downloads.1password.com/linux/rpm/beta/x86_64/1password-latest.rpm'
 
 # Prepare staging directory
 mkdir -p /var/opt # -p just in case it exists
