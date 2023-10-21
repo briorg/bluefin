@@ -23,6 +23,7 @@
 				"libxcrypt-compat",
 				"mesa-libGLU",
 				"nautilus-gsconnect",
+				"neovim", "neovim-qt",
 				"pulseaudio-utils",
 				"python3-pip",
 				"samba-dcerpc",
