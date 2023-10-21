@@ -5,6 +5,7 @@ on:
   merge_group:
   pull_request:
   workflow_dispatch:
+  push:
 env:
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
