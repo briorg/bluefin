@@ -2,6 +2,7 @@
 	"all": {
 		"include": {
 			"bluefin": [
+				"chromium", "fedora-chromium-config", "fedora-chromium-config-gnome", "fedora-chromium-config-gssapi",
 				"bash-color-prompt",
 				"cockpit-bridge",
 				"ddccontrol-db",
@@ -9,6 +10,7 @@
 				"ddccontrol",
 				"evtest",
 				"fish",
+				"freerdp",
 				"gnome-shell-extension-appindicator",
 				"gnome-shell-extension-blur-my-shell",
 				"gnome-shell-extension-dash-to-dock",
@@ -36,7 +38,7 @@
 				"wireguard-tools",
 				"xprop",
 				"yaru-theme",
-				"wl-clipboard", 
+				"wl-clipboard",
 				"zsh"
 			],
 			"bluefin-dx": [
@@ -89,13 +91,12 @@
 				"qemu",
 				"ubuntu-nerd-fonts",
 				"ubuntumono-nerd-fonts",
-				"virt-manager"
+				"virt-manager",
+				"virt-viewer"
 			]
 		},
 		"exclude": {
 			"bluefin": [
-				"firefox-langpacks",
-				"firefox",
 				"gnome-extensions-app",
 				"gnome-software-rpm-ostree",
 				"gnome-tour",
@@ -120,7 +121,7 @@
 	"39": {
 		"include": {
 			"bluefin": [
-				"input-leap"	
+				"input-leap"
 			],
 			"bluefin-dx": [],
 			"bluefin-framework": []

@@ -10,7 +10,7 @@ ARG TARGET_BASE="${TARGET_BASE:-bluefin}"
 FROM ${BASE_IMAGE}:${FEDORA_MAJOR_VERSION} AS bluefin
 
 ARG IMAGE_NAME="${IMAGE_NAME}"
-ARG IMAGE_VENDOR="ublue-os"
+ARG IMAGE_VENDOR="briorg"
 ARG IMAGE_FLAVOR="${IMAGE_FLAVOR}"
 ARG AKMODS_FLAVOR="${AKMODS_FLAVOR}"
 ARG BASE_IMAGE_NAME="${BASE_IMAGE_NAME}"
@@ -156,6 +156,28 @@ RUN systemctl enable podman.socket && \
     systemctl disable pmlogger.service
 
 RUN /tmp/workarounds.sh
+
+### BEGIN bri
+# Add custom scripts
+ADD --chmod=0755 scripts/* /tmp/
+
+### add bat
+RUN /tmp/bat.sh
+
+### add delta
+RUN /tmp/delta.sh
+
+### add 1password
+RUN /tmp/1password.sh
+
+### add appimagelauncher
+RUN rpm-ostree install "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher-2.2.0-gha111.d9d4c73.x86_64.rpm"
+
+### more
+RUN /tmp/more.sh
+
+### END bri
+
 
 # Clean up repos, everything is on the image so we don't need them
 RUN rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
