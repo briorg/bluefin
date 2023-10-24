@@ -75,7 +75,7 @@ chmod g+s "${BROWSER_SUPPORT_PATH}"
 # Dynamically create the required group via sysusers.d
 # and set the GID based on the files we just chgrp'd
 cat >/usr/lib/sysusers.d/onepassword.conf <<EOF
-g onepassword ${HELPER_PATH}
+g onepassword ${GID_ONEPASSWORD}
 EOF
 # remove the sysusers.d entry created by onepassword's RPM.
 # It doesn't magically set the GID like we need it to.
@@ -103,7 +103,7 @@ chmod g+s /usr/bin/op
 # Dynamically create the required group via sysusers.d
 # and set the GID based on the files we just chgrp'd
 cat >/usr/lib/sysusers.d/onepassword-cli.conf <<EOF
-g onepassword-cli /usr/bin/op
+g onepassword-cli ${GID_ONEPASSWORDCLI}
 EOF
 
 op --version
