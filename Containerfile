@@ -173,7 +173,9 @@ RUN /tmp/bat.sh
 RUN /tmp/delta.sh
 
 ### add 1password
-RUN /tmp/1password.sh
+COPY --from=ghcr.io/briorg/bling:latest /modules/bling/installers/1password.sh /tmp/1password.sh
+RUN chmod +x /tmp/1password.sh && \
+    /tmp/1password.sh
 
 ### add appimagelauncher
 RUN rpm-ostree install "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher-2.2.0-gha111.d9d4c73.x86_64.rpm"
