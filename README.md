@@ -1,6 +1,6 @@
 # bri's bluefin spin
 
-**a personal fork of Universal Blue's Bluefin{,-DX} spin on Fedora Sivlerblue** 
+**a personal fork of Universal Blue's Bluefin{,-DX} spin on Fedora Silverblue** 
 
 ==== BASE ====
 [![Bluefin Build](https://github.com/ublue-os/bluefin/actions/workflows/build.yml/badge.svg)](https://github.com/ublue-os/bluefin/actions/workflows/build.yml)
