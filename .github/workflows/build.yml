@@ -3,8 +3,8 @@ on:
   schedule:
     - cron: '00 08 * * *'  # 8:00am everyday
   push:
-    - branches: 
-        - main
+    branches: 
+      - main
   pull_request:
   workflow_dispatch:
 env:
