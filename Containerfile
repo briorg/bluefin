@@ -26,6 +26,11 @@ RUN wget https://copr.fedorainfracloud.org/coprs/rhcontainerbot/bootc/repo/fedor
 RUN rpm-ostree install bootc
 RUN rm -f /etc/yum.repos.d/bootc-"${FEDORA_MAJOR_VERSION}".repo
 
+## Achillobator 
+## Larger than Bluefin. When having an official package is preferred.
+
+RUN rpm-ostree install -y https://zoom.us/client/latest/zoom_x86_64.rpm
+
 RUN /tmp/build.sh && \
     pip install --prefix=/usr yafti && \
     systemctl enable rpm-ostree-countme.service && \
