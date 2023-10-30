@@ -4,10 +4,10 @@ on:
     - cron: '00 08 * * *'  # 8:00am everyday
   push:
     branches: 
-      - main
+      - live
   pull_request:
     branches:
-      - main
+      - live
     paths-ignore:
       - '**.md'
   workflow_dispatch:
