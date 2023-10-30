@@ -173,7 +173,7 @@ RUN /tmp/bat.sh
 RUN /tmp/delta.sh
 
 ### add 1password
-#COPY --from=ghcr.io/briorg/bling:latest /modules/bling/installers/1password.sh /tmp/1password.sh
+COPY --from=ghcr.io/ublue-os/bling:latest /modules/bling/installers/1password.sh /tmp/1password.sh
 RUN chmod +x /tmp/1password.sh && \
     ONEPASSWORD_RELEASE_CHANNEL=beta \
     GID_ONEPASSWORD=1500 \
