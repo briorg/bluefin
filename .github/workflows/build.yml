@@ -1,8 +1,10 @@
 name: Build and Push Image
 on:
   schedule:
-    - cron: '15 09 * * *'  # 9:15am everyday
-  merge_group:
+    - cron: '00 08 * * *'  # 8:00am everyday
+  push:
+    branches: 
+      - main
   pull_request:
     branches:
       - main
