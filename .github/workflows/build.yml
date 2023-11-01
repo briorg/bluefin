@@ -1,10 +1,8 @@
 name: Build and Push Image
 on:
   schedule:
-    - cron: '00 08 * * *'  # 8:00am everyday
-  push:
-    branches:
-      - live
+    - cron: '40 16 * * *'  # 16:40 UTC everyday
+  merge_group:
   pull_request:
     branches:
       - live
@@ -161,7 +159,7 @@ jobs:
       # https://github.com/macbre/push-to-ghcr/issues/12
       - name: Lowercase Registry
         id: registry_case
-        uses: ASzc/change-string-case-action@v5
+        uses: ASzc/change-string-case-action@v6
         with:
           string: ${{ env.IMAGE_REGISTRY }}
 
