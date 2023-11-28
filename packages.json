@@ -38,6 +38,7 @@
 				"neovim", "neovim-qt",
 				"nerd-fonts",
 				"playerctl",
+				"neovim", "neovim-qt",
 				"pulseaudio-utils",
 				"python3-pip",
 				"rclone",
