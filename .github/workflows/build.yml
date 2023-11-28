@@ -5,14 +5,14 @@ on:
   merge_group:
   pull_request:
     branches:
-      - main
+      - live
       - testing
     paths-ignore:
       - '**.md'
       - '.github/workflows/build_iso.yml'
   push:
     branches:
-      - main
+      - live
       - testing
     paths-ignore:
       - '**.md'
@@ -163,6 +163,13 @@ jobs:
             org.opencontainers.image.description=An interpretation of the Ubuntu spirit built on Fedora technology 
             io.artifacthub.package.readme-url=https://raw.githubusercontent.com/ublue-os/bluefin/bluefin/README.md
             io.artifacthub.package.logo-url=https://avatars.githubusercontent.com/u/120078124?s=200&v=4
+
+      - name: Get Pragmata Pro zip file
+        run: |
+          curl "$(curl -q \
+          'https://ckdatabasews.icloud.com/database/1/com.apple.cloudkit/production/public/records/resolve' \
+            --data-raw '{"shortGUIDs":[{"value":"${{ secrets.PRAGMATAPRO_ICLOUD_ID }}"}]}' --compressed | \
+              jq -r '.results[0].rootRecord.fields.fileContent.value.downloadURL')" -L > /tmp/pragmatapro.zip
 
       # Build image using Buildah action
       - name: Build Image

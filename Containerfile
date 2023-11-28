@@ -199,6 +199,32 @@ RUN systemctl enable docker.socket && \
 
 RUN /tmp/workarounds.sh
 
+### BEGIN bri
+# Add custom scripts
+ADD --chmod=0755 scripts/* /tmp/
+
+### add bat
+RUN /tmp/bat.sh
+
+### add delta
+RUN /tmp/delta.sh
+
+### add 1password
+COPY --from=ghcr.io/ublue-os/bling:latest /modules/bling/installers/1password.sh /tmp/1password.sh
+RUN chmod +x /tmp/1password.sh && \
+    ONEPASSWORD_RELEASE_CHANNEL=beta \
+    GID_ONEPASSWORD=1500 \
+    GID_ONEPASSWORDCLI=1600 \
+        /tmp/1password.sh
+
+### add appimagelauncher
+RUN rpm-ostree install "https://github.com/TheAssassin/AppImageLauncher/releases/download/continuous/appimagelauncher-2.2.0-gha111.d9d4c73.x86_64.rpm"
+
+### more
+RUN /tmp/more.sh
+
+### END bri
+
 # Clean up repos, everything is on the image so we don't need them
 RUN rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
     rm -f /etc/yum.repos.d/ganto-lxc4-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
