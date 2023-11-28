@@ -2,17 +2,23 @@
 	"all": {
 		"include": {
 			"bluefin": [
+				"chromium", "fedora-chromium-config", "fedora-chromium-config-gnome", "fedora-chromium-config-gssapi",
 				"bash-color-prompt",
 				"cockpit-bridge",
+				"ddccontrol-db",
+				"ddccontrol-gtk",
+				"ddccontrol",
 				"evtest",
 				"fish",
+				"freerdp",
+				"gdisk",
 				"glow",
-				"gum",
 				"gnome-shell-extension-appindicator",
 				"gnome-shell-extension-blur-my-shell",
 				"gnome-shell-extension-dash-to-dock",
 				"gnome-shell-extension-gsconnect",
 				"gnome-shell-extension-tailscale-status",
+				"gum",
 				"hplip",
 				"input-remapper",
 				"libgda-sqlite",
@@ -21,6 +27,7 @@
 				"libxcrypt-compat",
 				"mesa-libGLU",
 				"nautilus-gsconnect",
+				"neovim", "neovim-qt",
 				"pulseaudio-utils",
 				"python3-pip",
 				"samba-dcerpc",
@@ -115,13 +122,12 @@
 				"systemtap",
 				"ubuntu-nerd-fonts",
 				"ubuntumono-nerd-fonts",
-				"virt-manager"
+				"virt-manager",
+				"virt-viewer"
 			]
 		},
 		"exclude": {
 			"bluefin": [
-				"firefox-langpacks",
-				"firefox",
 				"gnome-extensions-app",
 				"gnome-software-rpm-ostree",
 				"gnome-tour",
