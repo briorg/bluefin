@@ -130,10 +130,7 @@ jobs:
 
       - name: Get Pragmata Pro zip file
         run: |
-          curl "$(curl -q \
-          'https://ckdatabasews.icloud.com/database/1/com.apple.cloudkit/production/public/records/resolve' \
-            --data-raw '{"shortGUIDs":[{"value":"${{ secrets.PRAGMATAPRO_ICLOUD_ID }}"}]}' --compressed | \
-              jq -r '.results[0].rootRecord.fields.fileContent.value.downloadURL')" -L > /tmp/pragmatapro.zip
+          curl "${{ secrets.PRAGMATAPRO_ZIP_URL }}" -L > /tmp/pragmatapro.zip
 
       # Build image using Buildah action
       - name: Build Image
