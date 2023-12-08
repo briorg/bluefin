@@ -19,7 +19,7 @@ concurrency:
 jobs:
   push-ghcr:
     name: Make
-    runs-on: ubuntu-22.04
+    runs-on: warp-ubuntu-latest-arm64-4x
     permissions:
       contents: read
       packages: write
@@ -210,7 +210,7 @@ jobs:
 
   check:
     name: Check all builds successful
-    runs-on: ubuntu-latest
+    runs-on: warp-ubuntu-latest-arm64-4x
     needs: [push-ghcr]
     steps:
       - name: Exit
