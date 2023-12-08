@@ -1,12 +1,11 @@
-FROM cgr.dev/chainguard/wolfi-base
-# Thanks to Nuno do Carmo for the initial prototype
+FROM ghcr.io/ublue-os/wolfi-toolbox
 
 LABEL com.github.containers.toolbox="true" \
       usage="This image is meant to be used with the toolbox or distrobox command" \
-      summary="A blank Wolfi distrobox, suitable for development" \
+      summary="A new cloud-native terminal experience powered by Wolfi and Homebrew" \
       maintainer="jorge.castro@gmail.com"
 
-COPY ./toolboxes/packages.wolfi /toolbox-packages
+COPY ./toolboxes/packages.bluefin-cli /toolbox-packages
 
 # Update image
 RUN apk update && \
@@ -18,4 +17,5 @@ RUN grep -v '^#' /toolbox-packages | xargs apk add
 RUN rm /toolbox-packages
 
 # Change root shell to BASH
+
 RUN sed -i -e '/^root/s/\/bin\/ash/\/bin\/bash/' /etc/passwd

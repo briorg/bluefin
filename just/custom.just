@@ -23,6 +23,16 @@ aqua:
     printf '\n    export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"\n'
     printf '\n=> see https://aquaproj.github.io/docs/tutorial for more info\n'
 
+[private]
+bluefin-cli:
+    #!/usr/bin/env bash
+    if [ ! -f "${HOME}/.brew_pkgs" ]; then
+       echo dysk > "${HOME}/.brew_pkgs"
+    fi;
+    distrobox-create --nvidia --image ghcr.io/ublue-os/bluefin-cli:latest -n bluefin -Y -a "--env BREW_PKGS=.brew_pkgs"
+    echo "Entering bluefin-cli"
+    distrobox enter bluefin
+
 # Enable Cockpit for web-based system management | https://cockpit-project.org/
 cockpit:
     echo 'Enabling Cockpit'
@@ -148,6 +158,30 @@ jetbrains-toolbox:
     tar zxf jetbrains-toolbox-"${BUILD_VERSION}".tar.gz
     echo "Launching JetBrains Toolbox"
     ./jetbrains-toolbox-"${BUILD_VERSION}"/jetbrains-toolbox
+
+# Install garden.io, the Cloud Native DevOps automation platform | https://garden.io
+garden:
+    #!/usr/bin/env bash
+    if ! command -v garden &> /dev/null; then
+        ASSET_URL=$(curl -s https://api.github.com/repos/garden-io/garden/releases/latest | \
+            jq -r '.assets[] | select(.browser_download_url | test("linux-amd64.tar.gz$")) | .browser_download_url')
+        GARDEN_DIR="${HOME}/.garden/bin"
+        TMP_DIR=$(mktemp -d)
+        curl -sSL "$ASSET_URL" | tar -xz -C "$TMP_DIR"
+        mkdir -p "$GARDEN_DIR"
+        mv "$TMP_DIR"/linux-amd64/garden "$GARDEN_DIR"
+        rm -rf "$TMP_DIR"
+
+        echo ""
+        echo "🌺🌻  Garden has been successfully installed 🌷💐"
+        echo ""
+        echo "Add the Garden CLI to your path by adding the following to your .bashrc/.zshrc:"
+        echo ""
+        echo "  export PATH=\$PATH:\$HOME/.garden/bin"
+        echo ""
+        echo "Head over to our documentation for next steps: https://docs.garden.io"
+        echo ""
+    fi
 
 # Install nix and Devbox
 nix-devbox:
