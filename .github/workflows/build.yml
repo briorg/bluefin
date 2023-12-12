@@ -27,7 +27,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image_flavor: [main, nvidia, asus, asus-nvidia, framework, surface, surface-nvidia]
+        image_flavor: [main]
+        base_image_name: [silverblue, kinoite]
         base_name: [bluefin, bluefin-dx]
         major_version: [38, 39]
         include:
@@ -53,7 +54,11 @@ jobs:
       - name: Matrix Variables
         run: |
           if [[ "${{ matrix.image_flavor }}" == "main" ]]; then
-              echo "IMAGE_NAME=${{ matrix.base_name }}" >> $GITHUB_ENV
+              if [[ "${{ matrix.base_image_name }}" != silverblue ]] ; then
+                  echo "IMAGE_NAME=${{ format('{0}-{1}', matrix.base_image_name, matrix.base_name) }}" >> $GITHUB_ENV
+              else
+                  echo "IMAGE_NAME=${{ matrix.base_name }}" >> $GITHUB_ENV
+              fi
           else
               echo "IMAGE_NAME=${{ format('{0}-{1}', matrix.base_name, matrix.image_flavor) }}" >> $GITHUB_ENV
           fi
@@ -143,6 +148,7 @@ jobs:
           tags: |
             ${{ steps.generate-tags.outputs.alias_tags }}
           build-args: |
+            BASE_IMAGE_NAME=${{ matrix.base_image_name }}
             IMAGE_NAME=${{ env.IMAGE_NAME }}
             IMAGE_FLAVOR=${{ matrix.image_flavor }}
             IMAGE_VENDOR=${{ github.repository_owner }}
