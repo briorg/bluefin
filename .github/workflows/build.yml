@@ -56,7 +56,11 @@ jobs:
           if [[ "${{ matrix.image_flavor }}" == "main" ]]; then
               echo "IMAGE_NAME=${{ matrix.base_name }}" >> $GITHUB_ENV
           else
-              echo "IMAGE_NAME=${{ format('{0}-{1}', matrix.base_name, matrix.image_flavor) }}" >> $GITHUB_ENV
+              if [[ "${{ matrix.base_image_name }}" != silverblue ]] ; then
+                  echo "IMAGE_NAME=${{ format('{0}-{1}-{2}', matrix.base_image_name, matrix.base_name, matrix.image_flavor) }}" >> $GITHUB_ENV
+              else
+                  echo "IMAGE_NAME=${{ format('{0}-{1}', matrix.base_name, matrix.image_flavor) }}" >> $GITHUB_ENV
+              fi
           fi
           if [[ "${{ matrix.image_flavor }}" =~ "asus" ]]; then
               echo "AKMODS_FLAVOR=asus" >> $GITHUB_ENV
