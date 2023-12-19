@@ -113,7 +113,7 @@ rm -f /usr/lib/sysusers.d/30-rpmostree-pkg-group-onepassword-cli.conf
 
 # Register path symlink
 # We do this via tmpfiles.d so that it is created by the live system.
-tail /usr/lib/tmpfiles.d/onepassword.conf <<'EOF'
+cat > /usr/lib/tmpfiles.d/onepassword.conf <<'EOF'
 #L  /opt/1Password                           -     -  -            -  /usr/lib/1Password
 C+  /run/1Password                           -     -  -            -  /usr/lib/1Password
 L   /opt/1Password                           -     -  -            -  /run/1Password
