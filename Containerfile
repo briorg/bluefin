@@ -17,11 +17,20 @@ ARG BASE_IMAGE_NAME="${BASE_IMAGE_NAME}"
 ARG FEDORA_MAJOR_VERSION="${FEDORA_MAJOR_VERSION}"
 ARG PACKAGE_LIST="bluefin"
 
-# GNOME VRR
+# GNOME VRR & Prompt
 RUN if [ ${FEDORA_MAJOR_VERSION} -ge "39" ]; then \
         wget https://copr.fedorainfracloud.org/coprs/kylegospo/gnome-vrr/repo/fedora-"${FEDORA_MAJOR_VERSION}"/kylegospo-gnome-vrr-fedora-"${FEDORA_MAJOR_VERSION}".repo -O /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo && \
         rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:kylegospo:gnome-vrr mutter mutter-common gnome-control-center gnome-control-center-filesystem && \
-        rm -f /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo \
+        rm -f /etc/yum.repos.d/_copr_kylegospo-gnome-vrr.repo && \
+        wget https://copr.fedorainfracloud.org/coprs/kylegospo/prompt/repo/fedora-$(rpm -E %fedora)/kylegospo-prompt-fedora-$(rpm -E %fedora).repo?arch=x86_64 -O /etc/yum.repos.d/_copr_kylegospo-prompt.repo && \
+        rpm-ostree override replace \
+        --experimental \
+        --from repo=copr:copr.fedorainfracloud.org:kylegospo:prompt \
+            vte291 \
+            vte-profile && \
+        rpm-ostree install \
+            prompt && \
+        rm -f /etc/yum.repos.d/_copr_kylegospo-prompt.repo \
     ; fi
 
 COPY usr /usr
@@ -136,11 +145,6 @@ COPY --from=cgr.dev/chainguard/kubectl:latest /usr/bin/kubectl /usr/bin/kubectl
 RUN curl -Lo ./kind "https://github.com/kubernetes-sigs/kind/releases/latest/download/kind-$(uname)-amd64" && \
     chmod +x ./kind && \
     mv ./kind /usr/bin/kind
-
-# Install DevPod
-RUN rpm-ostree install https://github.com/loft-sh/devpod/releases/download/v0.3.7/DevPod_linux_x86_64.rpm && \
-    wget https://github.com/loft-sh/devpod/releases/download/v0.3.7/devpod-linux-amd64 -O /tmp/devpod && \
-    install -c -m 0755 /tmp/devpod /usr/bin
 
 # Install kns/kctx and add completions for Bash
 RUN wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -O /usr/bin/kubectx && \
