@@ -14,8 +14,8 @@ wget 'https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage' 
 
 
 # install thorium browser
-rpm-ostree install $(curl -s https://api.github.com/repos/Alex313031/thorium/releases/latest  | \
- jq -r '.assets[] | select(.name | contains ("rpm")) | .browser_download_url')
+rpm-ostree install "$(curl -s https://api.github.com/repos/Alex313031/thorium/releases/latest  | \
+ jq -r '.assets[] | select(.name | contains ("rpm")) | .browser_download_url')"
 
 tail /usr/lib/tmpfiles.d/onepassword.conf <<'EOF'
 #L  /opt/1Password                           -     -  -            -  /usr/lib/1Password
