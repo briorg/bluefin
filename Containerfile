@@ -73,6 +73,7 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rp
     /tmp/build.sh && \
     /tmp/image-info.sh && \
     pip install --prefix=/usr yafti && \
+    pip install --prefix=/usr topgrade && \
     mkdir -p /usr/etc/flatpak/remotes.d && \
     wget -q https://dl.flathub.org/repo/flathub.flatpakrepo -P /usr/etc/flatpak/remotes.d && \
     cp /tmp/ublue-update.toml /usr/etc/ublue-update/ublue-update.toml && \
@@ -91,10 +92,10 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ublue-os/bling/repo/fedora-$(rp
     rm -f /etc/yum.repos.d/charm.repo && \
     rm -f /etc/yum.repos.d/_copr_ublue-os-bling.repo && \
     rm -f /etc/yum.repos.d/ublue-os-staging-fedora-"${FEDORA_MAJOR_VERSION}".repo && \
-    rm -f /usr/share/applications/fish.desktop && \
-    rm -f /usr/share/applications/htop.desktop && \
-    rm -f /usr/share/applications/nvtop.desktop && \
-    rm -fr /usr/share/applications/gnome-system-monitor.desktop && \
+    echo "Hidden=true" >> /usr/share/applications/fish.desktop && \
+    echo "Hidden=true" >> /usr/share/applications/htop.desktop && \
+    echo "Hidden=true" >> /usr/share/applications/nvtop.desktop && \
+    echo "Hidden=true" >> /usr/share/applications/gnome-system-monitor.desktop && \
     sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/user.conf && \
     sed -i 's/#DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=15s/' /etc/systemd/system.conf && \
     sed -i '/^PRETTY_NAME/s/Silverblue/Bluefin/' /usr/lib/os-release && \
@@ -133,9 +134,13 @@ RUN wget https://copr.fedorainfracloud.org/coprs/ganto/lxc4/repo/fedora-"${FEDOR
 RUN /tmp/build.sh && \
     /tmp/image-info.sh
 
+## power-profiles-daemon with amd p-state support, remove when this is upstream
+RUN rpm-ostree override replace --experimental --from repo=copr:copr.fedorainfracloud.org:ublue-os:staging power-profiles-daemon
+
 RUN wget https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -O /tmp/docker-compose && \
     install -c -m 0755 /tmp/docker-compose /usr/bin
 
+COPY --from=cgr.dev/chainguard/dive:latest /usr/bin/dive /usr/bin/dive
 COPY --from=cgr.dev/chainguard/flux:latest /usr/bin/flux /usr/bin/flux
 COPY --from=cgr.dev/chainguard/helm:latest /usr/bin/helm /usr/bin/helm
 COPY --from=cgr.dev/chainguard/ko:latest /usr/bin/ko /usr/bin/ko
@@ -152,7 +157,11 @@ RUN wget https://raw.githubusercontent.com/ahmetb/kubectx/master/kubectx -O /usr
     chmod +x /usr/bin/kubectx /usr/bin/kubens
 
 # Set up services
-RUN systemctl enable podman.socket && \
+RUN systemctl enable docker.socket && \
+    systemctl enable podman.socket && \
+    systemctl enable swtpm-workaround.service && \
+    systemctl enable bluefin-dx-groups.service && \
+    systemctl enable --global bluefin-dx-user-vscode.service && \
     systemctl disable pmie.service && \
     systemctl disable pmlogger.service
 
