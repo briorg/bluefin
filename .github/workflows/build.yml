@@ -2,13 +2,15 @@ name: Build and Push Image
 on:
   schedule:
     - cron: '40 16 * * *'  # 16:40 UTC everyday
-  merge_group:
-  pull_request:
+  pull_request: &when
     branches:
       - live
     paths-ignore:
       - '**.md'
+  push: *when
+  merge_group:
   workflow_dispatch:
+
 env:
     IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
 
