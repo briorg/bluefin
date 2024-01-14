@@ -2,12 +2,16 @@ name: Build and Push Image
 on:
   schedule:
     - cron: '40 16 * * *'  # 16:40 UTC everyday
-  pull_request: &when
+  pull_request:
     branches:
       - live
     paths-ignore:
       - '**.md'
-  push: *when
+  push:
+    branches:
+      - live
+    paths-ignore:
+      - '**.md'
   merge_group:
   workflow_dispatch:
 
