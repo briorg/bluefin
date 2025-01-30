@@ -1,3 +1,4 @@
+## _archived in favor of https://github.com/perchnet/desk_
 # bri's bluefin spin
 
 **a personal fork of Universal Blue's Bluefin{,-DX} spin on Fedora Silverblue** 
